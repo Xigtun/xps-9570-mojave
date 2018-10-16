@@ -1,0 +1,64 @@
+
+Clover EFI installer log - Mon Jan  8 04:59:21 PST 2018
+Installer version: v2.4k r4297 EFI bootloader
+======================================================
+/dev/disk0 (internal):
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:      GUID_partition_scheme                         256.1 GB   disk0
+   1:                        EFI EFI                     209.7 MB   disk0s1
+   2:                 Apple_APFS Container disk2         255.9 GB   disk0s2
+
+/dev/disk1 (internal):
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:      GUID_partition_scheme                         256.1 GB   disk1
+   1:                 Apple_APFS Container disk3         255.0 GB   disk1s1
+   2:                        EFI NO NAME                 317.5 MB   disk1s2
+
+/dev/disk2 (synthesized):
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:      APFS Container Scheme -                      +255.9 GB   disk2
+                                 Physical Store disk0s2
+   1:                APFS Volume Macintosh HD            10.9 GB    disk2s1
+   2:                APFS Volume Preboot                 19.9 MB    disk2s2
+   3:                APFS Volume Recovery                506.6 MB   disk2s3
+   4:                APFS Volume VM                      12.9 GB    disk2s4
+
+/dev/disk3 (synthesized):
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:      APFS Container Scheme -                      +255.0 GB   disk3
+                                 Physical Store disk1s1
+   1:                APFS Volume Macintosh H             33.9 GB    disk3s1
+   2:                APFS Volume Preboot                 21.0 MB    disk3s2
+   3:                APFS Volume Recovery                506.6 MB   disk3s3
+   4:                APFS Volume VM                      12.9 GB    disk3s4
+
+/dev/disk4 (internal, physical):
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:     FDisk_partition_scheme                        *1.0 TB     disk4
+   1:               Windows_NTFS                         1.0 TB     disk4s1
+
+/dev/disk5 (internal, physical):
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:     FDisk_partition_scheme                        *750.2 GB   disk5
+   1:               Windows_NTFS                         750.2 GB   disk5s1
+
+/dev/disk6 (external, physical):
+   #:                       TYPE NAME                    SIZE       IDENTIFIER
+   0:      GUID_partition_scheme                        *15.7 GB    disk6
+   1:                        EFI EFI                     209.7 MB   disk6s1
+   2:                  Apple_HFS Install macOS High S... 15.4 GB    disk6s2
+
+Target volume /Volumes/Macintosh HD on disk2 is APFS on physical store disk0s2
+======================================================
+Backing up EFI files
+
+Backing up /Volumes/Macintosh HD/EFIROOTDIR/EFI folder to /Volumes/Macintosh HD/EFI-Backups/r0000/2018-01-08-04h59/EFI
+======================================================
+Installing BootSectors/BootLoader
+
+Stage 0 - Don't write any of boot0af, boot0md, boot0ss to /
+Stage 1 - Don't write any of boot1h2, boot1f32alt, boot1xalt to /
+
+======================================================
+=========== Clover EFI Installation Finish ===========
+======================================================
