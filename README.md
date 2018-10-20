@@ -19,14 +19,14 @@
 
 use the install efi to install Mac OS Majave(10.14)
 
-then replace the EFI folder.
+then replace the EFI folder reset kextcache.(you may reboot severl times)
 
 #### Working
 
 	Intel Graphics accelleration(uhd630)
 	wifi & bluetooth (dw1830)
 	Audio
-	screen blacklight
+	brightlight control
 	...
 
 #### Not Working
