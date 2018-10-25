@@ -19,7 +19,7 @@
 
 use the install efi to install Mac OS Majave(10.14)
 
-then replace the EFI folder reset kextcache.(you may reboot severl times)
+then replace the EFI folder rebuild kextcache.(you may reboot severl times)
 
 #### Working
 
@@ -32,6 +32,7 @@ then replace the EFI folder reset kextcache.(you may reboot severl times)
 #### Not Working
 
 	hdmi port
+    ...
 	
 	
 	
