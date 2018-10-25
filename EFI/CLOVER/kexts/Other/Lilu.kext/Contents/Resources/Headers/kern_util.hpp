@@ -62,17 +62,20 @@ extern vm_map_t kernel_map;
 extern proc_t kernproc;
 
 /**
+ *  For noreturn failures
+ */
+#define UNREACHABLE() do { __builtin_unreachable(); } while (0)
+
+/**
  *  Conditional logging to system log prefixed with you plugin name
  *
  *  @param cond  precondition
  *  @param str   printf-like string
  */
-#define SYSLOG_COND(cond, module, str, ...)                                                          \
-	do {                                                                                             \
-	    if (cond) {                                                                                  \
-	        IOLog( "%s%10s" str "\n", xStringify(PRODUCT_NAME) ": ", module " @ ", ## __VA_ARGS__);  \
-	        if (ADDPR(debugPrintDelay) > 0) IOSleep(ADDPR(debugPrintDelay));                         \
-	    }                                                                                            \
+#define SYSLOG_COND(cond, module, str, ...)                                                                \
+	do {                                                                                                   \
+	    if (cond)                                                                                          \
+	        lilu_os_log( "%s%10s" str "\n", xStringify(PRODUCT_NAME) ": ", module " @ ", ## __VA_ARGS__);  \
 	} while (0)
 
 /**
@@ -115,8 +118,10 @@ extern proc_t kernproc;
  */
 #define PANIC_COND(cond, module, str, ...)                                                             \
 	do {                                                                                               \
-	    if (cond)                                                                                      \
+	    if (cond) {                                                                                    \
 	        (panic)( "%s%10s" str "\n", xStringify(PRODUCT_NAME) ": ", module " @ ", ## __VA_ARGS__);  \
+	        UNREACHABLE();                                                                             \
+	    }                                                                                              \
 	} while (0)
 
 /**
@@ -192,6 +197,12 @@ extern proc_t kernproc;
 	static_cast<uint32_t>(reinterpret_cast<uint64_t>(x))
 
 /**
+ *  Ugly floating point printing macros
+ */
+#define PRIFRAC "%lld.%04lld"
+#define CASTFRAC(x) static_cast<int64_t>(x), static_cast<int64_t>(((x) - static_cast<int64_t>(x)) * 10000)
+
+/**
  *  Macros to print the UUID
  */
 #define PRIUUID "%02X%02X%02X%02X-%02X%02X-%02X%02X-%02X%02X-%02X%02X%02X%02X%02X%02X"
@@ -222,6 +233,14 @@ extern proc_t kernproc;
  *  Remove padding between fields
  */
 #define PACKED __attribute__((packed))
+
+/**
+ *  This function is supposed to workaround missing entries in the system log.
+ *  By providing its own buffer for logging data.
+ *
+ *  @param format  formatted string
+ */
+EXPORT extern "C" void lilu_os_log(const char *format, ...);
 
 /**
  *  Two-way substring search
@@ -366,6 +385,75 @@ inline T alignValue(T size, T align = 4096) {
 }
 
 /**
+ *  Check pointer alignment for type T
+ *
+ *  @param p  pointer
+ *
+ *  @return true if properly aligned
+ */
+template<typename T>
+inline bool isAligned(T *p) {
+	return reinterpret_cast<uintptr_t>(p) % alignof(T) == 0;
+}
+
+/**
+ *  Obtain bit value of size sizeof(T)
+ *  Warning, you are suggested to always pass the type explicitly!
+ *
+ *  @param n  bit no
+ *
+ *  @return bit value
+ */
+template <typename T>
+constexpr T getBit(T n) {
+	return static_cast<T>(1U) << n;
+}
+
+/**
+ *  Obtain bit mask of size sizeof(T)
+ *  Warning, you are suggested to always pass the type explicitly!
+ *
+ *  @param hi  starting high bit
+ *  @param lo  ending low bit
+ *
+ *  @return bit mask
+ */
+template <typename T>
+constexpr T getBitMask(T hi, T lo) {
+	return (getBit(hi)|(getBit(hi)-1U)) & ~(getBit(lo)-1U);
+}
+
+/**
+ *  Obtain bit field of size sizeof(T)
+ *  Warning, you are suggested to always pass the type explicitly!
+ *
+ *  @param so  source
+ *  @param hi  starting high bit
+ *  @param lo  ending low bit
+ *
+ *  @return bit field value
+ */
+template <typename T>
+constexpr T getBitField(T so, T hi, T lo) {
+	return (so & getBitMask(hi, lo)) >> lo;
+}
+
+/**
+ *  Set bit field of size sizeof(T)
+ *  Warning, you are suggested to always pass the type explicitly!
+ *
+ *  @param va  value
+ *  @param hi  starting high bit
+ *  @param lo  ending low bit
+ *
+ *  @return bit field value
+ */
+template <typename T>
+constexpr T setBitField(T so, T hi, T lo) {
+	return (so << lo) & getBitMask(hi, lo);
+}
+
+/**
  *  This is an ugly replacement to std::find_if, allowing you
  *  to check whether a container consists only of value values.
  *
@@ -406,14 +494,23 @@ inline T FunctionCast(T org, mach_vm_address_t ptr) {
  *  Typed buffer allocator
  */
 namespace Buffer {
+	/**
+	 *  Allocating more than 1 GB is unreasonable for stability purposes.
+	 */
+	static constexpr size_t BufferMax = 1024*1024*1024;
+
 	template <typename T>
 	inline T *create(size_t size) {
-		return static_cast<T *>(kern_os_malloc(sizeof(T) * size));
+		size_t s = sizeof(T) * size;
+		if (s > BufferMax) return nullptr;
+		return static_cast<T *>(kern_os_malloc(s));
 	}
 	
 	template <typename T>
 	inline bool resize(T *&buf, size_t size) {
-		auto nbuf = static_cast<T *>(kern_os_realloc(buf, sizeof(T) * size));
+		size_t s = sizeof(T) * size;
+		if (s > BufferMax) return false;
+		auto nbuf = static_cast<T *>(kern_os_realloc(buf, s));
 		if (nbuf) {
 			buf = nbuf;
 			return true;
