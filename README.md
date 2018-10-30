@@ -17,7 +17,7 @@
 	dw1830
 	16GB Ram
 
-use the install efi to install Mac OS Majave(10.14)
+use the install efi to install Mac OS Majave(10.14) and boot into the system
 
 then replace the EFI folder rebuild kextcache.(you may reboot severl times)
 
@@ -32,6 +32,7 @@ then replace the EFI folder rebuild kextcache.(you may reboot severl times)
 #### Not Working
 
 	hdmi port
+	sleep
     ...
 	
 	
