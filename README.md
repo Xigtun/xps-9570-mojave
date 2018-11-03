@@ -11,7 +11,7 @@
 ### upgrade from 10.14
     
 - download system update
-- install, reboot, use the install_clover to boot into the system
+- use the install_clover to install update, reboot into the system
 - replace the EFI folder, rebuild kextcache then reboot
 
 
