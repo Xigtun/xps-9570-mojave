@@ -1,6 +1,5 @@
 ### xps-9570 hackintosh mojave
 
-
 ### preview
 
 ![system](./system.png)
@@ -8,6 +7,12 @@
 ![power](./power.png)
 ![graphic](./graphic.png)
 ![usb](./usb.png)
+
+### upgrade from 10.14
+    
+- download system update
+- install, reboot, use the install_clover to boot into the system
+- replace the EFI folder, rebuild kextcache then reboot
 
 
 ### Device
@@ -17,9 +22,9 @@
 	dw1830
 	16GB Ram
 
-use the install efi to install Mac OS Majave(10.14) and boot into the system
+use the install clover to install Mac OS Majave(10.14 or 10.14.1) and boot into the system
 
-then replace the EFI folder rebuild kextcache.(you may reboot severl times)
+then replace the EFI folder, rebuild kextcache and reboot
 
 #### Working
 

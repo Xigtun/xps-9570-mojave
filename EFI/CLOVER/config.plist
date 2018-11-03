@@ -420,7 +420,7 @@
 	<key>Boot</key>
 	<dict>
 		<key>Arguments</key>
-		<string>abm_firstpolldelay=16000 -gux_defer_usb2 -ngfxbeta -lilubetaall slide=0 kext-dev-mode=1 darkwake=1 dart=0 brcmfx-country=#a npci=0x2000 -v keepsyms=1 -disablegfxfirmware igfxcflbklt=force</string>
+		<string>abm_firstpolldelay=16000 -gux_defer_usb2 -ngfxbeta igfxcflbklt=force slide=0 kext-dev-mode=1 darkwake=1 dart=0 brcmfx-country=#a npci=0x2000 -v keepsyms=1 -disablegfxfirmware -lilubetaall</string>
 		<key>CustomLogo</key>
 		<string>Alternate</string>
 		<key>Debug</key>
@@ -608,6 +608,8 @@
 			<key>Inject</key>
 			<true/>
 		</dict>
+		<key>UseIntelHDMI</key>
+		<true/>
 	</dict>
 	<key>DisableDrivers</key>
 	<array>
@@ -615,11 +617,6 @@
 	</array>
 	<key>GUI</key>
 	<dict>
-		<key>Hide</key>
-		<array>
-			<string>Preboot</string>
-			<string>preboot</string>
-		</array>
 		<key>Language</key>
 		<string>zh_CN:0</string>
 		<key>Mouse</key>
@@ -651,8 +648,15 @@
 	<dict>
 		<key>EDID</key>
 		<dict>
+			<key>Custom</key>
+			<data>
+			AP///////wBNEI0UAAAAAAUcAQSlIhN4Dqs9qVM1vCUMUVYAAAAB
+			AQEBAQEBAQEBAQEBAQEBTdAAoPBwPoAwIDUAWMIQAAAYAAAAAAAA
+			AAAAAAAAAAAAAAAAAAAA/gBGTlZEUoBMUTE1NkQxAAAAAAACQQMo
+			ARIAAAsBCiAgAKA=
+			</data>
 			<key>Inject</key>
-			<false/>
+			<true/>
 		</dict>
 		<key>Inject</key>
 		<dict>
@@ -712,17 +716,33 @@
 				<false/>
 				<key>Find</key>
 				<data>
-				VUiJ5Uj/BaVGBwCLlsAlAACKjg==
+				i5bAJQAAio6VIwAAD7aG
 				</data>
 				<key>InfoPlistPatch</key>
 				<false/>
-				<key>MatchOS</key>
-				<string>10.14</string>
 				<key>Name</key>
 				<string>AppleIntelCFLGraphicsFramebuffer</string>
 				<key>Replace</key>
 				<data>
-				VUiJ5bgEAAAAiYa8JQAAMcBdww==
+				uAQAAACJhrwlAAAxwF3D
+				</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
+				<string>Set the number of active lanes to 2 (for laptop with 4K display) (by FireWolf)</string>
+				<key>Disabled</key>
+				<false/>
+				<key>Find</key>
+				<data>
+				i5bAJQAAio6VIwAAD7aG
+				</data>
+				<key>InfoPlistPatch</key>
+				<false/>
+				<key>Name</key>
+				<string>AppleIntelCFLGraphicsFramebuffer</string>
+				<key>Replace</key>
+				<data>
+				uAIAAACJhrwlAAAxwF3D
 				</data>
 			</dict>
 			<dict>
