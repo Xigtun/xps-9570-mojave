@@ -29,7 +29,7 @@ then replace the EFI folder, rebuild kextcache and reboot
 #### Working
 
 	Intel Graphics accelleration(uhd630)
-	wifi & bluetooth (dw1830)
+	wifi & bluetooth (dw1830 & dw1560)
 	Audio
 	brightlight control
 	...
