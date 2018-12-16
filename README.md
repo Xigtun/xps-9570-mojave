@@ -22,7 +22,7 @@
 	dw1830
 	16GB Ram
 
-use the install clover to install Mac OS Majave(10.14 or 10.14.1) and boot into the system
+use the install clover to install Mac OS Majave(10.14, 10.14.1,  10.14.2) and boot into the system
 
 then replace the EFI folder, rebuild kextcache and reboot
 
