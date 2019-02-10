@@ -459,7 +459,7 @@
 		<key>Audio</key>
 		<dict>
 			<key>Inject</key>
-			<integer>13</integer>
+			<integer>30</integer>
 			<key>ResetHDA</key>
 			<true/>
 		</dict>
@@ -478,6 +478,10 @@
 				<key>device-id</key>
 				<data>
 				mz4AAA==
+				</data>
+				<key>enable-cflbkit</key>
+				<data>
+				AQAAAA==
 				</data>
 				<key>enable-hdmi20</key>
 				<data>
@@ -648,15 +652,8 @@
 	<dict>
 		<key>EDID</key>
 		<dict>
-			<key>Custom</key>
-			<data>
-			AP///////wBNEI0UAAAAAAUcAQSlIhN4Dqs9qVM1vCUMUVYAAAAB
-			AQEBAQEBAQEBAQEBAQEBTdAAoPBwPoAwIDUAWMIQAAAYAAAAAAAA
-			AAAAAAAAAAAAAAAAAAAA/gBGTlZEUoBMUTE1NkQxAAAAAAACQQMo
-			ARIAAAsBCiAgAKA=
-			</data>
 			<key>Inject</key>
-			<true/>
+			<false/>
 		</dict>
 		<key>Inject</key>
 		<dict>

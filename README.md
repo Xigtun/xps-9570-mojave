@@ -8,7 +8,7 @@
 ![graphic](./graphic.png)
 ![usb](./usb.png)
 
-### upgrade from 10.14
+### upgrade from 10.14.x
     
 - download system update
 - use the install_clover to install update, reboot into the system
@@ -22,9 +22,10 @@
 	dw1830
 	16GB Ram
 
-use the install clover to install Mac OS Majave(10.14, 10.14.1,  10.14.2) and boot into the system
+use the install clover to install Mac OS Majave(10.14, 10.14.1,  10.14.2, 10.14.3) and boot into the system
 
 then replace the EFI folder, rebuild kextcache and reboot
+
 
 #### Working
 
