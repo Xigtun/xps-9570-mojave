@@ -8,6 +8,7 @@
 ![graphic](./graphic.png)
 ![usb](./usb.png)
 ![type-c external display](./external_display.png)
+![type-c external display](./external_display2.png)
 ### upgrade from 10.14.x
     
 - download system update
