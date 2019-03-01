@@ -35,6 +35,7 @@ then replace the EFI folder, rebuild kextcache and reboot
 	Audio
 	brightlight control
 	type-c external display (I use ThinkVersion T24h, it works well, just use the boardid of iMac14,1 Mac-031B6874CF7F642A)
+	type-c to hdmi/vga also works
 	...
 
 #### Not Working
